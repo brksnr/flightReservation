@@ -2,8 +2,12 @@ package com.example.demo.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,10 +23,14 @@ public class Ship {
     @Column(name = "name")
     private String name;
 
+    @Max(value = 5, message = "Gemi için maksimum koltuk sayısına ulaşıldı. Başka gemi bakınız!")
     @Column(name = "capacity")
-    private Long capacity;
+    private Integer capacity;
 
     @Column(name = "speed")
     private Long speed;
+
+    @OneToMany(mappedBy = "ship", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Seat> seats;
 
 }
