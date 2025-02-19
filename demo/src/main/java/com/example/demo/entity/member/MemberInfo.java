@@ -36,6 +36,9 @@ public class MemberInfo {
     @Column(name = "weight")
     private Integer weight;
 
+    @OneToMany(mappedBy = "memberInfo", cascade = CascadeType.ALL)
+    private List<CreditCard> creditCards;
+
     @ElementCollection
     @CollectionTable(name = "member_allergy", schema = "flight", joinColumns = @JoinColumn(name = "member_id"))
     @Column(name = "allergy")
