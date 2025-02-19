@@ -30,5 +30,8 @@ public class Seat {
 
     @ManyToMany(mappedBy = "seats")
     private List<Member> members;
+
+    @ManyToMany(mappedBy = "seats")
+    private List<Travel> travels;
 }
 

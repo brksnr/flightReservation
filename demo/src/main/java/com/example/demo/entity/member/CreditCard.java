@@ -1,13 +1,14 @@
 package com.example.demo.entity.member;
 
+import com.example.demo.entity.Travel;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,6 +21,10 @@ public class CreditCard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @NotNull
+    @Column(name = "name")
+    private String name;
 
     @NotNull
     @Column(name = "cardholder_name")
@@ -43,4 +48,7 @@ public class CreditCard {
     @ManyToOne
     @JoinColumn(name = "member_info_id")
     private MemberInfo memberInfo;
+
+    @OneToMany(mappedBy = "creditCard")
+    private List<Travel> travels;
 }

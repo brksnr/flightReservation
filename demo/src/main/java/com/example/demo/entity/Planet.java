@@ -3,6 +3,8 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "planet", schema = "flight")
 public class Planet {
@@ -20,4 +22,10 @@ public class Planet {
 
     @Column(name = "location")
     private Integer location;
+
+    @OneToMany(mappedBy = "departurePlanet")
+    private List<Travel> departureTravels;
+
+    @OneToMany(mappedBy = "arrivalPlanet")
+    private List<Travel> arrivalTravels;
 }

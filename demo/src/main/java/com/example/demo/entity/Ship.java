@@ -33,4 +33,7 @@ public class Ship {
     @OneToMany(mappedBy = "ship", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Seat> seats;
 
+    @OneToMany(mappedBy = "ship")
+    private List<Travel> travels;
+
 }
