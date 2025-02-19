@@ -1,6 +1,5 @@
 package com.example.demo.entity.member;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,15 +22,21 @@ public class Member implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "username")
+
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
-    @Column(name = "email")
+
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
-    @Column(name = "password")
+
+    @Column(name = "password", nullable = false)
     private String password;
-    @Column(name = "created_at")
+
+    @Column(name = "created_at", nullable = false)
     private Timestamp createdAt;
 
+    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private MemberInfo memberInfo;
 
     @Override
     public boolean isAccountNonExpired() {
