@@ -1,5 +1,6 @@
 package com.example.demo.entity.member;
 
+import com.example.demo.entity.Seat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,6 +38,14 @@ public class Member implements UserDetails {
 
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private MemberInfo memberInfo;
+
+    @ManyToMany
+    @JoinTable(
+            name = "seat_member",
+            joinColumns = @JoinColumn(name = "member_id"),
+            inverseJoinColumns = @JoinColumn(name = "seat_id")
+    )
+    private List<Seat> seats;
 
     @Override
     public boolean isAccountNonExpired() {
