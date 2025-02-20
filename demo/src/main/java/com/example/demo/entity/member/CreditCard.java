@@ -1,5 +1,6 @@
 package com.example.demo.entity.member;
 
+import com.example.demo.entity.Peyment;
 import com.example.demo.entity.Travel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -51,4 +52,7 @@ public class CreditCard {
 
     @OneToMany(mappedBy = "creditCard")
     private List<Travel> travels;
+
+    @OneToMany(mappedBy = "creditCard")
+    private List<Peyment> payments;
 }

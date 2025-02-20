@@ -1,5 +1,6 @@
 package com.example.demo.entity.member;
 
+import com.example.demo.entity.Peyment;
 import com.example.demo.entity.Seat;
 import com.example.demo.entity.Travel;
 import jakarta.persistence.*;
@@ -42,6 +43,9 @@ public class Member implements UserDetails {
 
     @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Travel> createdTravels;
+
+    @OneToMany(mappedBy = "member")
+    private List<Peyment> payments;
 
 
     @ManyToMany

@@ -46,6 +46,9 @@ public class Travel {
     @JoinColumn(name = "created_by", nullable = false)
     private Member createdBy;
 
+    @OneToMany(mappedBy = "travel")
+    private List<Peyment> payments;
+
     @ManyToMany
     @JoinTable(
             name = "travel_seat",
