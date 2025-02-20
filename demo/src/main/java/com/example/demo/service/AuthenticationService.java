@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.OptionalInt;
+
 @Service
 public class AuthenticationService {
 
@@ -42,5 +45,17 @@ public class AuthenticationService {
         member.setPassword(encodedPassword);
 
         return memberRepository.save(member);
+    }
+
+    public Member login(String email, String password){
+        Optional<Member> memberOptional = memberRepository.findMemberByEmail(email);
+        if(!memberOptional.isPresent()){
+            throw new ApiException("Bu emaile ait kullanıcı bulunamadı!", HttpStatus.NOT_FOUND);
+        }
+        Member member = memberOptional.get();
+        if(!passwordEncoder.matches(password, member.getPassword())){
+            throw new ApiException("Email veye Şifre hatalı!", HttpStatus.NOT_FOUND);
+        }
+        return member;
     }
 }
