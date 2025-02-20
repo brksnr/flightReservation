@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.example.demo.entity.member.CreditCard;
+import com.example.demo.entity.member.Member;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,6 +38,13 @@ public class Travel {
 
     @Column(name = "arrival_date", nullable = false)
     private String arrivalDate;
+
+    @Column(name = "price")
+    private Double price;
+
+    @ManyToOne
+    @JoinColumn(name = "created_by", nullable = false)
+    private Member createdBy;
 
     @ManyToMany
     @JoinTable(

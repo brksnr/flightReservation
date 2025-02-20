@@ -1,6 +1,7 @@
 package com.example.demo.entity.member;
 
 import com.example.demo.entity.Seat;
+import com.example.demo.entity.Travel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,6 +39,10 @@ public class Member implements UserDetails {
 
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private MemberInfo memberInfo;
+
+    @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Travel> createdTravels;
+
 
     @ManyToMany
     @JoinTable(
