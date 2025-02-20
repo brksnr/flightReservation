@@ -43,6 +43,7 @@ public class MemberInfoService {
         memberInfo.setBirthdate(memberInfoRequest.birthDate());
         memberInfo.setHeight(memberInfoRequest.height());
         memberInfo.setWeight(memberInfoRequest.weight());
+        memberInfo.setAllergy(memberInfoRequest.allergy());
 
         memberInfoRepository.save(memberInfo);
     }

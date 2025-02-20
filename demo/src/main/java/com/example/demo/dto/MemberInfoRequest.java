@@ -1,4 +1,6 @@
 package com.example.demo.dto;
 
-public record MemberInfoRequest(String fullName, String telephone, String birthDate, Integer height, Integer weight) {
+import java.util.List;
+
+public record MemberInfoRequest(String fullName, String telephone, String birthDate, Integer height, Integer weight, List<String> allergy) {
 }
