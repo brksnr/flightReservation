@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.dto.LoginRequest;
+import com.example.demo.dto.LoginResponse;
 import com.example.demo.dto.RegisterRequest;
 import com.example.demo.entity.member.Member;
 import com.example.demo.service.AuthenticationService;
@@ -30,5 +32,16 @@ public class AuthController {
         authenticationService
                 .register(registerRequest.username(), registerRequest.email(), registerRequest.password());
         return ResponseEntity.ok("Kullanıcı başarıyla oluşturuldu!");
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+        Member member = authenticationService.login(loginRequest.email(), loginRequest.password());
+        String token = null;
+        if (member != null) {
+            token = jwtService.generateToken(member.getEmail());
+        }
+        LoginResponse loginResponse = new LoginResponse(loginRequest.email(), token, member.getId());
+        return ResponseEntity.ok(loginResponse);
     }
 }

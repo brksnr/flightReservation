@@ -1,4 +1,4 @@
 package com.example.demo.dto;
 
-public record LoginResponse(String username, String token, Long id) {
+public record LoginResponse(String email, String token, Long id) {
 }
