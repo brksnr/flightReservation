@@ -38,6 +38,13 @@ public class MemberService implements UserDetailsService {
                 });
     }
 
+    public Member getMemberByEmail(String email){
+        return memberRepository.findMemberByEmail(email)
+                .orElseThrow(() -> {
+                    throw new ApiException("Kullanıcı bulunamadı!", HttpStatus.NOT_FOUND);
+                });
+    }
+
     public List<Member> getAllMembers(){
         return memberRepository.findAll();
     }
