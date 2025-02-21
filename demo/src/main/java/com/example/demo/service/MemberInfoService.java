@@ -37,7 +37,6 @@ public class MemberInfoService {
         if (!memberInfo.getId().equals(member.getId())) {
             throw new ApiException("Farklı bir kullanıcının bilgilerini değiştiremezsiniz!", HttpStatus.FORBIDDEN);
         }
-
         memberInfo.setFullName(memberInfoRequest.fullName());
         memberInfo.setTelephone(memberInfoRequest.telephone());
         memberInfo.setBirthdate(memberInfoRequest.birthDate());

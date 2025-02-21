@@ -24,8 +24,8 @@ public class CreditCardService {
     }
 
 
-    public void saveCreditCard(Long id, CreditCardRequest request){
-        Member member = memberRepository.findById(id)
+    public void saveCreditCard(Long memberId, CreditCardRequest request){
+        Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new ApiException("Kullanıcı bulunamadı!", HttpStatus.NOT_FOUND));
 
         if (creditCardRepository.existsByCardNumber(request.cardNumber())) {
