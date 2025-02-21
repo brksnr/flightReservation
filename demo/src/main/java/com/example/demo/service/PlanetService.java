@@ -26,6 +26,7 @@ public class PlanetService {
         if(planetRepository.findByLocation(planet.getLocation()).isPresent()){
             throw new ApiException("Gezegenlerin konumu aynı olamaz!", HttpStatus.BAD_REQUEST);
         }
+
          planetRepository.save(planet);
     }
 
