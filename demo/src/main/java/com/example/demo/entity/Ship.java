@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import lombok.AllArgsConstructor;
@@ -33,7 +34,21 @@ public class Ship {
     private List<Seat> seats;
 
     @OneToMany(mappedBy = "ship")
+    @JsonBackReference
     private List<Travel> travels;
+
+    @OneToMany(mappedBy = "ship")
+    @JsonBackReference
+    private List<CreateFlight> createFlights;
+
+
+    public List<CreateFlight> getCreateFlights() {
+        return createFlights;
+    }
+
+    public void setCreateFlights(List<CreateFlight> createFlights) {
+        this.createFlights = createFlights;
+    }
 
     public Long getId() {
         return id;

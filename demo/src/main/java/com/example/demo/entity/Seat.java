@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.example.demo.entity.member.Member;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -11,8 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "seat", schema = "flight")
-public class
-Seat {
+public class Seat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +26,7 @@ Seat {
     private Boolean isAvailable;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "ship_id", nullable = false)
     private Ship ship;
 

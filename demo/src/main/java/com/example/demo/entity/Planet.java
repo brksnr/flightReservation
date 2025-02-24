@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -28,10 +29,40 @@ public class Planet {
     private Integer location;
 
     @OneToMany(mappedBy = "departurePlanet")
+    @JsonBackReference
     private List<Travel> departureTravels;
 
     @OneToMany(mappedBy = "arrivalPlanet")
+    @JsonBackReference
     private List<Travel> arrivalTravels;
+
+    @OneToMany(mappedBy = "departurePlanet")
+    @JsonBackReference
+    private List<CreateFlight> departureCreateFlights;
+
+    @OneToMany(mappedBy = "arrivalPlanet")
+    @JsonBackReference
+    private List<CreateFlight> arrivalCreateFlights;
+
+
+
+
+
+    public List<CreateFlight> getDepartureCreateFlights() {
+        return departureCreateFlights;
+    }
+
+    public void setDepartureCreateFlights(List<CreateFlight> departureCreateFlights) {
+        this.departureCreateFlights = departureCreateFlights;
+    }
+
+    public List<CreateFlight> getArrivalCreateFlights() {
+        return arrivalCreateFlights;
+    }
+
+    public void setArrivalCreateFlights(List<CreateFlight> arrivalCreateFlights) {
+        this.arrivalCreateFlights = arrivalCreateFlights;
+    }
 
     public Long getId() {
         return id;
