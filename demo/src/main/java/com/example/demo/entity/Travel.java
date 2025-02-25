@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -34,10 +35,10 @@ public class Travel {
     private Planet arrivalPlanet;
 
     @Column(name = "departure_date", nullable = false)
-    private String departureDate;
+    private LocalDateTime departureDate;
 
     @Column(name = "arrival_date", nullable = false)
-    private String arrivalDate;
+    private LocalDateTime arrivalDate;
 
     @Column(name = "price")
     private Double price;
@@ -47,7 +48,7 @@ public class Travel {
     private Member createdBy;
 
     @OneToMany(mappedBy = "travel")
-    private List<Peyment> payments;
+    private List<Payment> payments;
 
     @ManyToMany
     @JoinTable(
@@ -61,4 +62,91 @@ public class Travel {
     @JoinColumn(name = "credit_card_id", nullable = false)
     private CreditCard creditCard;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Ship getShip() {
+        return ship;
+    }
+
+    public void setShip(Ship ship) {
+        this.ship = ship;
+    }
+
+    public Planet getDeparturePlanet() {
+        return departurePlanet;
+    }
+
+    public void setDeparturePlanet(Planet departurePlanet) {
+        this.departurePlanet = departurePlanet;
+    }
+
+    public Planet getArrivalPlanet() {
+        return arrivalPlanet;
+    }
+
+    public void setArrivalPlanet(Planet arrivalPlanet) {
+        this.arrivalPlanet = arrivalPlanet;
+    }
+
+    public LocalDateTime getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(LocalDateTime departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    public LocalDateTime getArrivalDate() {
+        return arrivalDate;
+    }
+
+    public void setArrivalDate(LocalDateTime arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Member getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Member createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
+    }
+
+    public List<Seat> getSeats() {
+        return seats;
+    }
+
+    public void setSeats(List<Seat> seats) {
+        this.seats = seats;
+    }
+
+    public CreditCard getCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(CreditCard creditCard) {
+        this.creditCard = creditCard;
+    }
 }

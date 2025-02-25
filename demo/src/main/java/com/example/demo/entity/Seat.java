@@ -26,7 +26,6 @@ public class Seat {
     private Boolean isAvailable;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "ship_id", nullable = false)
     private Ship ship;
 

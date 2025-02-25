@@ -2,6 +2,9 @@ package com.example.demo.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import lombok.AllArgsConstructor;
@@ -34,11 +37,10 @@ public class Ship {
     private List<Seat> seats;
 
     @OneToMany(mappedBy = "ship")
-    @JsonBackReference
     private List<Travel> travels;
 
     @OneToMany(mappedBy = "ship")
-    @JsonBackReference
+    @JsonIgnore
     private List<CreateFlight> createFlights;
 
 

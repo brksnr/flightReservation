@@ -2,6 +2,9 @@ package com.example.demo.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -29,20 +32,21 @@ public class Planet {
     private Integer location;
 
     @OneToMany(mappedBy = "departurePlanet")
-    @JsonBackReference
+    @JsonIgnore
     private List<Travel> departureTravels;
 
     @OneToMany(mappedBy = "arrivalPlanet")
-    @JsonBackReference
+    @JsonIgnore
     private List<Travel> arrivalTravels;
 
     @OneToMany(mappedBy = "departurePlanet")
-    @JsonBackReference
+    @JsonIgnore
     private List<CreateFlight> departureCreateFlights;
 
     @OneToMany(mappedBy = "arrivalPlanet")
-    @JsonBackReference
+    @JsonIgnore
     private List<CreateFlight> arrivalCreateFlights;
+
 
 
 
