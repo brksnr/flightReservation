@@ -3,12 +3,18 @@ package com.example.demo.entity;
 import com.example.demo.entity.member.CreditCard;
 import com.example.demo.entity.member.Member;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "payment", schema = "flight")
-public class Peyment {
+public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
