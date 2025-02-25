@@ -26,7 +26,7 @@ public class CreateFlightController {
     public ResponseEntity<?> createFlight(@RequestBody CreateFlight createFlight) {
         try {
             createFlightService.createFlight(createFlight);
-            return ResponseEntity.ok("Uçuş başarıyla eklendi!");
+            return ResponseEntity.status(HttpStatus.CREATED).body("Uçuş başarıyla eklendi!");
         } catch (ApiException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Hata: " + e.getMessage());
         } catch (Exception e) {

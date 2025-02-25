@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,10 +21,9 @@ public class CreateFlight {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "ship_id", nullable = false)
     private Ship ship;
-
 
     @ManyToOne
     @JoinColumn(name = "departure_planet_id", nullable = false)

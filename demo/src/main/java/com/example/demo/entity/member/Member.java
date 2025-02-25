@@ -1,6 +1,6 @@
 package com.example.demo.entity.member;
 
-import com.example.demo.entity.Peyment;
+import com.example.demo.entity.Payment;
 import com.example.demo.entity.Seat;
 import com.example.demo.entity.Travel;
 import jakarta.persistence.*;
@@ -46,7 +46,7 @@ public class Member implements UserDetails {
     private List<Travel> createdTravels;
 
     @OneToMany(mappedBy = "member")
-    private List<Peyment> payments;
+    private List<Payment> payments;
 
 
     @ManyToMany
@@ -140,11 +140,11 @@ public class Member implements UserDetails {
         this.createdTravels = createdTravels;
     }
 
-    public List<Peyment> getPayments() {
+    public List<Payment> getPayments() {
         return payments;
     }
 
-    public void setPayments(List<Peyment> payments) {
+    public void setPayments(List<Payment> payments) {
         this.payments = payments;
     }
 
