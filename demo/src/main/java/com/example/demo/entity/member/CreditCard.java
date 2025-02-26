@@ -4,6 +4,7 @@ import com.example.demo.entity.Payment;
 import com.example.demo.entity.Payment;
 import com.example.demo.entity.Travel;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -54,6 +55,7 @@ public class CreditCard {
     private MemberInfo memberInfo;
 
     @OneToMany(mappedBy = "creditCard")
+    @JsonIgnore
     private List<Travel> travels;
 
     @OneToMany(mappedBy = "creditCard")

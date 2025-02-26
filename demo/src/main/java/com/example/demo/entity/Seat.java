@@ -1,7 +1,7 @@
 package com.example.demo.entity;
 
 import com.example.demo.entity.member.Member;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -26,6 +26,7 @@ public class Seat {
     private Boolean isAvailable;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "ship_id", nullable = false)
     private Ship ship;
 
@@ -33,7 +34,10 @@ public class Seat {
     private List<Member> members;
 
     @ManyToMany(mappedBy = "seats")
+    @JsonIgnore
     private List<Travel> travels;
+
+
 
     public Long getId() {
         return id;
@@ -55,7 +59,7 @@ public class Seat {
         return isAvailable;
     }
 
-    public void setIsAvailable(Boolean available) {
+    public void setAvailable(Boolean available) {
         isAvailable = available;
     }
 

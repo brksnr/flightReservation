@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import com.example.demo.entity.member.CreditCard;
 import com.example.demo.entity.member.Member;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class Travel {
     private Long id;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "ship_id", nullable = false)
     private Ship ship;
 

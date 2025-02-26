@@ -3,6 +3,7 @@ package com.example.demo.entity.member;
 import com.example.demo.entity.Payment;
 import com.example.demo.entity.Seat;
 import com.example.demo.entity.Travel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -43,6 +44,7 @@ public class Member implements UserDetails {
     private MemberInfo memberInfo;
 
     @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Travel> createdTravels;
 
     @OneToMany(mappedBy = "member")
