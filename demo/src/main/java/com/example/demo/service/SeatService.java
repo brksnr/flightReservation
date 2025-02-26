@@ -27,16 +27,20 @@ public class SeatService {
                 .orElseThrow(() -> new ApiException("Gemi bulunamadı!", HttpStatus.NOT_FOUND));
 
         Long existingSeatsCount = seatRepository.countByShipId(shipId);
-        if (seatRepository.existsBySeatNumber(seat.getSeatNumber())) {
-            throw new ApiException("Bu koltuk numarası zaten mevcut!", HttpStatus.BAD_REQUEST);
+
+        if (seatRepository.findBySeatNumberAndShipId(seat.getSeatNumber(), shipId).isPresent()) {
+            throw new ApiException("Bu gemide bu koltuk numarası zaten mevcut!", HttpStatus.BAD_REQUEST);
         }
+
         if (existingSeatsCount >= ship.getCapacity()) {
             throw new ApiException("Bu gemiye maksimum koltuk sayısı eklenmiş!", HttpStatus.BAD_REQUEST);
         }
 
         seat.setShip(ship);
-        seat.setIsAvailable(true);
+        seat.setAvailable(true);
         seatRepository.save(seat);
     }
+
+
 
 }
