@@ -46,19 +46,22 @@ public class Travel {
     private Double price;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "created_by", nullable = false)
     private Member createdBy;
 
-    @OneToMany(mappedBy = "travel")
+    @OneToMany(mappedBy = "travel", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Payment> payments;
 
-    @ManyToMany
+    @ManyToMany()
     @JoinTable(
             name = "travel_seat",
             joinColumns = @JoinColumn(name = "travel_id"),
             inverseJoinColumns = @JoinColumn(name = "seat_id")
     )
     private List<Seat> seats;
+
 
     @ManyToOne
     @JoinColumn(name = "credit_card_id", nullable = false)
