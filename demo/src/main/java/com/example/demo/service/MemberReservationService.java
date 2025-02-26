@@ -23,15 +23,17 @@ public class MemberReservationService {
     private final CreditCardRepository creditCardRepository;
     private final SeatRepository seatRepository;
     private final TravelRepository travelRepository;
+    private final PaymentRepository paymentRepository;
 
     @Autowired
-    public MemberReservationService(MemberReservationRepository memberReservationRepository, CreateFlightRepository createFlightRepository, MemberRepository memberRepository, CreditCardRepository creditCardRepository, SeatRepository seatRepository, TravelRepository travelRepository) {
+    public MemberReservationService(MemberReservationRepository memberReservationRepository, CreateFlightRepository createFlightRepository, MemberRepository memberRepository, CreditCardRepository creditCardRepository, SeatRepository seatRepository, TravelRepository travelRepository, PaymentRepository paymentRepository) {
         this.memberReservationRepository = memberReservationRepository;
         this.createFlightRepository = createFlightRepository;
         this.memberRepository = memberRepository;
         this.creditCardRepository = creditCardRepository;
         this.seatRepository = seatRepository;
         this.travelRepository = travelRepository;
+        this.paymentRepository = paymentRepository;
     }
 
     public Travel createReservation(Long plannedId, Long memberId, Long creditCardId, Travel travel) {
@@ -88,6 +90,7 @@ public class MemberReservationService {
         Seat seat = travel.getSeats().get(0);
         seat.setAvailable(true);
         seatRepository.save(seat);
+
 
         travelRepository.delete(travel);
     }
