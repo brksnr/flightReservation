@@ -59,6 +59,7 @@ public class CreditCard {
     private List<Travel> travels;
 
     @OneToMany(mappedBy = "creditCard")
+    @JsonIgnore
     private List<Payment> payments;
 
     public Long getId() {
